@@ -1,0 +1,21 @@
+server:
+  port: 8082
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://www.googleapis.com/service_accounts/v1/jwk/securetoken%40system.gserviceaccount.com
+          issuer-uri: https://securetoken.google.com/unnathy
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public
+    username: postgres
+    password: password
+  jpa:
+    show-sql: true
