@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
@@ -50,7 +49,7 @@ public class EntityChangeListener  {
                 tableName = entity.name();
             }
             auditService.saveAudit(new AuditMessage(simpleName, ((BaseEntity) baseEntity).getUuid().toString(),
-                    tableName, objectMapper.convertValue(baseEntity, typeRef), ""));
+                    tableName, objectMapper.convertValue(baseEntity, typeRef), "",false));
             log.debug("Updating {}", baseEntity);
         } catch (Throwable e) {
             log.debug("Error setting user details", e);

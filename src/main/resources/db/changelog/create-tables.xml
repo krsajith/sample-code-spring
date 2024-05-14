@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="create-date-table" author="Sajith">
+        <createTable tableName="date_sample">
+            <column name="id" type="serial"/>
+            <column name="simple_date" type="date"/>
+            <column name="col_time_with_zone" type="timestamptz"/>
+            <column name="col_time_with_out_zone" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

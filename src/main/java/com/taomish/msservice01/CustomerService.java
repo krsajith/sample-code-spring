@@ -35,4 +35,8 @@ public class CustomerService {
         body = restTemplate.getForEntity("https://dev.ctrm-xceler.com/ctrm-api/public/ping",String.class).getBody();
         log.info("Result {}",body);
     }
+
+    public void delete(Customer data) {
+        customerRepository.deleteById(data.getUuid());
+    }
 }

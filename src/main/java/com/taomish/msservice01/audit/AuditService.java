@@ -88,7 +88,7 @@ public class AuditService {
             var prevLog = auditLogRepo.findFirstByEntityNameAndEntityIdAndLatest(auditLog.getEntityName(), auditLog.getEntityId(), true);
             if (prevLog != null) {
                 prevLog.setLatest(false);
-                auditLog.setAction("Update");
+                auditLog.setAction(audit.isDelete() ? "Delete" : "Update");
                 var difference = Maps.difference(FlatMapUtil.flatten(prevLog.getSummary()), FlatMapUtil.flatten(auditLog.getSummary()));
 
                 auditLog.setAppended(difference.entriesOnlyOnRight().toString());
@@ -102,7 +102,7 @@ public class AuditService {
                     }
                 });
 
-                if (ObjectUtils.isEmpty(auditLog.getDifferenceList())) {
+                if (!audit.isDelete() && ObjectUtils.isEmpty(auditLog.getDifferenceList())) {
                     return;
                 }
                 auditLogRepo.save(prevLog);

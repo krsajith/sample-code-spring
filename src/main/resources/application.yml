@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8080
 spring:
   security:
     oauth2:
@@ -14,8 +14,10 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       auto-commit: true
+#    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public
     username: postgres
     password: password
   jpa:
     show-sql: true
+    generate-ddl: true
